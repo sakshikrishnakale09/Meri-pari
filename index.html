@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Missing You From The Heart</title>
+  <link href="https://fonts.googleapis.com/css?family=Sacramento:400|Poppins:400,700&display=swap" rel="stylesheet">
+  <style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ffe8f0 0%, #b39ddb 100%);
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    color: #4a0036;
+    overflow-x: hidden;
+  }
+  .main-content {
+    max-width: 100vw;
+    min-height: 80vh;
+    padding: 3vw 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .page {
+    display: none;
+    width: 97vw;
+    max-width: 900px;
+    margin: 0 auto;
+    min-height: 60vh;
+    position: relative;
+    animation: fadeIn 1.1s;
+  }
+  .page.active {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(40px);}
+    to { opacity: 1; transform: translateY(0);}
+  }
+  .dream-title {
+    font-family: 'Sacramento', cursive;
+    font-size: 3.2em;
+    color: #ad1457;
+    text-shadow: 0 6px 24px #ffb7c533;
+    margin: 0;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+  .hero-img {
+    width: 170px;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 6px 30px #91267e22;
+    border: 6px solid #fff;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 12px #b39ddb88);
+    background: #fff;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    animation: homePopIn 1.8s cubic-bezier(.57,1.47,.63,.86);
+  }
+  @keyframes homePopIn {
+    0% { transform: scale(0.7) rotate(-10deg); opacity: 0;}
+    70% { transform: scale(1.08) rotate(5deg);}
+    100% { transform: scale(1) rotate(0); opacity:1;}
+  }
+  .dream-sub {
+    font-size: 1.2em;
+    color: #6c0b36;
+    font-weight: 500;
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 1em 2em;
+    background: rgba(255,255,255,0.6);
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 10px #ffb7c540;
+    animation: fadeIn 2s;
+  }
+  .page-switcher {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    margin: 2.5em auto 0 auto;
+    position: relative;
+    z-index: 5;
+  }
+  .switch-btn {
+    background: linear-gradient(90deg, #ffb7c5 80%, #f8bbd0 100%);
+    color: #b00055;
+    font-family: 'Sacramento', cursive;
+    font-weight: 700;
+    font-size: 1.15em;
+    border: none;
+    border-radius: 1.5em;
+    padding: 0.55em 2em;
+    box-shadow: 0 2px 10px #ffb7c540;
+    cursor: pointer;
+    transition: background 0.19s, color 0.16s, transform 0.17s;
+    outline: none;
+  }
+  .switch-btn:active {
+    background: #ffc2d8;
+    color: #b00055;
+    transform: scale(0.98);
+  }
+  .switch-btn:disabled {
+    background: #fce4ec;
+    color: #bdbdbd;
+    cursor: not-allowed;
+  }
+
+  /* Collage Styles */
+  .collage-title {
+    font-family: 'Sacramento', cursive;
+    font-size: 2.1em;
+    color: #ad1457;
+    text-align: center;
+    margin: 0.6em 0;
+    letter-spacing: 1.2px;
+    animation: fadeIn 1.2s;
+  }
+  .collage-note {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.13em;
+    color: #7b1fa2;
+    text-align: center;
+    margin-bottom: 1.2em;
+    background: rgba(255,255,255,0.7);
+    border-radius: 13px;
+    padding: 0.6em 1.2em;
+    box-shadow: 0 2px 10px #ffb7c540;
+    animation: fadeIn 1.8s;
+  }
+  .collage-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    align-items: flex-start;
+    background: rgba(255,255,255,0.3);
+    border-radius: 22px;
+    padding: 16px;
+    margin: 20px auto 0 auto;
+    max-width: 100vw;
+    min-height: 340px;
+    position: relative;
+    overflow: hidden;
+  }
+  .collage-img {
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 3px 18px #e1bee7a1;
+    border: 2.5px solid #fff;
+    background: #fff;
+    width: 210px;
+    height: 170px;
+    margin: 0;
+    display: block;
+    transition: transform 0.32s, box-shadow 0.32s;
+    animation: fadeIn 1.5s;
+  }
+  .collage-img:hover {
+    transform: scale(1.11) rotate(-2deg);
+    box-shadow: 0 8px 32px #ff6f9199;
+    border: 2.5px solid #ff6f91;
+    z-index: 2;
+  }
+  /* Extra Collage Effects */
+  .collage-heart-anim {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%,-50%) scale(1);
+    font-size: 7em;
+    color: #ff6f91;
+    opacity: 0.13;
+    pointer-events: none;
+    animation: collageHeartPulse 2.4s infinite;
+    z-index: 0;
+  }
+  @keyframes collageHeartPulse {
+    0%,100% { opacity: 0.13; transform: translate(-50%,-50%) scale(1);}
+    50% { opacity: 0.28; transform: translate(-50%,-50%) scale(1.14);}
+  }
+  .collage-sparkle {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    animation: sparkleFloat 3s infinite alternate;
+  }
+  @keyframes sparkleFloat {
+    0% { transform: translateY(0);}
+    100% { transform: translateY(-15px);}
+  }
+
+  /* Scrapbook Styles */
+  .scrapbook-title {
+    font-family: 'Sacramento', cursive;
+    color: #ad1457;
+    font-size: 2em;
+    text-align: center;
+    margin: 0.6em 0 0.2em 0;
+    letter-spacing: 1.2px;
+  }
+  .scrapbook-note {
+    text-align: center;
+    color: #7b1fa2;
+    font-family: 'Poppins',sans-serif;
+    max-width:480px;
+    margin:0 auto 1em auto;
+    font-size:1.09em;
+    line-height:1.5;
+    background: rgba(255,255,255,0.8);
+    border-radius: 13px;
+    padding: 0.7em 1.3em;
+    box-shadow: 0 2px 10px #ffb7c540;
+    animation: fadeIn 1.4s;
+  }
+  .scrapbook-pages {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.2em;
+    gap: 1.5em;
+  }
+  .scrapbook-page-btn {
+    font-family: 'Sacramento', cursive;
+    font-size: 1.18em;
+    background: linear-gradient(90deg, #ffe6f6, #ffb7c5 80%);
+    border: none;
+    border-radius: 14px;
+    color: #ad1457;
+    padding: 0.45em 1.3em;
+    cursor: pointer;
+    margin: 0 0.2em;
+    box-shadow: 0 2px 10px #ffb7c540;
+    transition: background 0.19s, color 0.16s, transform 0.17s;
+    outline: none;
+  }
+  .scrapbook-page-btn.active {
+    background: #ff6f91;
+    color: #fff;
+    transform: scale(1.06);
+    font-weight: bold;
+  }
+  .scrapbook-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px;
+    padding: 1.4em 0 1em 0;
+    animation: fadeIn 1s;
+  }
+  .scrapbook-img-frame {
+    position: relative;
+    width: 150px;
+    height: 130px;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px #b39ddb22;
+    cursor: pointer;
+    transition: transform 0.19s, box-shadow 0.19s;
+    border: 3px solid #ffd6e0;
+    overflow: hidden;
+    animation: fadeIn 1.3s;
+  }
+  .scrapbook-img-frame:hover {
+    transform: scale(1.13) rotate(-3deg);
+    box-shadow: 0 8px 32px #ff6f9199;
+    border: 3px solid #ff6f91;
+    z-index: 2;
+  }
+  .scrapbook-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+    background: #fff;
+    transition: box-shadow 0.19s;
+  }
+  .scrapbook-caption {
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 100%;
+    text-align: center;
+    background: rgba(255,255,255,0.74);
+    color: #ad1457;
+    font-size: 1.08em;
+    font-family: 'Sacramento', cursive;
+    padding: 0.19em 0;
+    border-radius: 0 0 14px 14px;
+    pointer-events: none;
+  }
+  /* Scrapbook popup */
+  .popup-bg {
+    position: fixed;
+    left: 0; top: 0; width: 100vw; height: 100vh;
+    background: rgba(255, 240, 250, 0.94);
+    z-index: 1002;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.7s;
+  }
+  .popup-bg.active {
+    display: flex;
+  }
+  .popup-content {
+    background: #fff;
+    border-radius: 40px;
+    box-shadow: 0 8px 42px #b39ddb77;
+    padding: 2em 1.2em 1.2em 1.2em;
+    text-align: center;
+    max-width: 95vw;
+    max-height: 90vh;
+    position: relative;
+    animation: popupIn 0.45s cubic-bezier(.57,1.47,.63,.86);
+    overflow: hidden;
+  }
+  @keyframes popupIn {
+    0% { transform: scale(0.85) translateY(50px); opacity: 0;}
+    100% { transform: scale(1) translateY(0); opacity: 1;}
+  }
+  .popup-close {
+    position: absolute;
+    top: 16px; right: 24px;
+    background: #ffeef8;
+    color: #c2185b;
+    border: none;
+    font-size: 2.2em;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0 12px;
+    z-index: 2;
+    box-shadow: 0 2px 10px #ffb7c522;
+    transition: background 0.17s;
+  }
+  .popup-close:hover {
+    background: #ffd6e0;
+  }
+  .popup-img {
+    width: 320px;
+    max-width: 85vw;
+    margin: 1.5em auto 0 auto;
+    display: block;
+    position: relative;
+    border-radius: 40px;
+    box-shadow: 0 8px 24px #ffb7c599;
+    animation: popupCloudFloat 2.8s infinite alternate;
+  }
+  @keyframes popupCloudFloat {
+    0% { transform: translateY(0) scale(1);}
+    100% { transform: translateY(-10px) scale(1.03);}
+  }
+  .popup-message {
+    margin: 1.25em 0 0 0;
+    font-size: 1.25em;
+    font-family: 'Sacramento', cursive;
+    color: #b00055;
+    background: #fff4fa;
+    border-radius: 16px;
+    padding: 1.1em 1.2em;
+    box-shadow: 0 2px 18px #ff6f911f;
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+    animation: fadeIn 1.0s;
+    z-index: 3;
+    position: relative;
+    text-shadow: 0 2px 10px #ffb7c555;
+  }
+  .popup-stars {
+    position: absolute;
+    left: 0; top: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Showcase Styles (last page) */
+  #showcase {
+    background: linear-gradient(120deg, #fff6fa 60%, #eedcff 100%);
+    border-radius: 30px;
+    box-shadow: 0 3px 40px #b39ddb33;
+    margin-bottom: 1.5em;
+    min-height: 430px;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 2em;
+    animation: fadeIn 1.1s;
+  }
+  .showcase-title {
+    font-family: 'Sacramento', cursive;
+    color: #b00055;
+    font-size: 2.2em;
+    text-align: center;
+    padding-top: 0.6em;
+    margin-bottom: 0.1em;
+    letter-spacing: 2px;
+    text-shadow: 0 4px 24px #ffb7c533;
+    animation: fadeIn 1.2s;
+  }
+  .showcase-caption {
+    font-family: 'Poppins', sans-serif;
+    color: #7b1fa2;
+    font-size: 1.1em;
+    text-align: center;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto 1.2em auto;
+    background: rgba(255,255,255,0.7);
+    border-radius: 13px;
+    padding: 0.6em 1.2em;
+    box-shadow: 0 2px 10px #ffb7c540;
+    animation: fadeIn 1.8s;
+  }
+  .showcase-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 36px 38px;
+    min-height: 350px;
+    position: relative;
+    margin: 0 auto;
+    padding: 1em 0.5em 1.5em 0.5em;
+    z-index: 2;
+  }
+  .showcase-frame {
+    position: relative;
+    background: linear-gradient(120deg, #fff0f6 70%, #f4e1ff 100%);
+    border-radius: 34px 34px 60px 60px/44px 44px 70px 70px;
+    box-shadow: 0 4px 32px #ffb7c540;
+    width: 215px;
+    height: 280px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    animation: fadeIn 1.2s;
+    transition: filter 0.3s, box-shadow 0.3s;
+  }
+  .showcase-img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 28px 28px 50px 50px/38px 38px 60px 60px;
+    box-shadow: 0 2px 14px #b39ddb33;
+    margin-bottom: 0.5em;
+    background: #fff;
+    border: 4px solid #fff;
+    animation: showcaseImgFloat 3.2s infinite alternate;
+    transition: box-shadow 0.3s;
+  }
+  @keyframes showcaseImgFloat {
+    0% { transform: translateY(0);}
+    100% { transform: translateY(-13px);}
+  }
+  .showcase-heart {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    font-size: 2em;
+    z-index: 2;
+    filter: drop-shadow(0 2px 10px #ffb7c533);
+    animation: heartPulse 1.7s infinite;
+    pointer-events: none;
+  }
+  @keyframes heartPulse {
+    0%,100% { transform: scale(1);}
+    50% { transform: scale(1.17);}
+  }
+  .showcase-note {
+    background: rgba(255,255,255,0.96);
+    margin: 0.6em 0.7em 1em 0.7em;
+    border-radius: 18px;
+    color: #b00055;
+    font-family: 'Sacramento', cursive;
+    font-size: 1.15em;
+    text-align: center;
+    padding: 0.8em 0.7em;
+    letter-spacing: 0.04em;
+    box-shadow: 0 2px 12px #ffb7c533;
+    animation: fadeIn 2.1s;
+    text-shadow: 0 2px 10px #ffb7c555;
+  }
+  .showcase-hearts-bg {
+    pointer-events: none;
+    position: absolute;
+    left: 0; top: 0; width: 100%; height: 100%;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .showcase-falling-heart {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 2.3em;
+    opacity: 0.25;
+    pointer-events: none;
+    animation: showcaseHeartFall linear;
+  }
+  @keyframes showcaseHeartFall {
+    0% { transform: translateY(-50px) rotate(-14deg); opacity:0.22;}
+    80% { opacity:0.34;}
+    100% { transform: translateY(420px) rotate(14deg); opacity:0;}
+  }
+  @media (max-width: 1000px) {
+    .showcase-gallery {
+      flex-wrap: wrap;
+      gap: 18px 8vw;
+    }
+    .showcase-frame { width: 45vw; min-width: 140px; height: 45vw; max-width: 220px; max-height: 285px;}
+    .showcase-img {height: 60vw; max-height: 210px;}
+  }
+  @media (max-width: 650px) {
+    .showcase-gallery {gap: 12px 2vw;}
+    .showcase-frame { width: 94vw; min-width: 110px; height: 40vw; max-width: 320px; max-height: 230px;}
+    .showcase-img {height: 34vw; max-height: 150px;}
+    .showcase-note { font-size: .98em;}
+  }
+  </style>
+</head>
+<body>
+  <audio id="bg-music" src="https://files.catbox.moe/y2ueft.mp3" autoplay loop></audio>
+  <div class="main-content">
+    <!-- Page 1: Home -->
+    <section id="home" class="page active">
+      <div>
+        <h1 class="dream-title">Missing You From The Heart ❤️‍🩹</h1>
+        <img src="https://i.ibb.co/355SRZ0Z/74022-DD7-8-A77-499-B-AD48-B434418-A07-DF.png" alt="Her Portrait" class="hero-img">
+        <p class="dream-sub">Every moment without you is a memory waiting to happen. This page is a piece of my heart, missing you in every beat. <span style="font-size:1.4em;">❤️‍🩹</span></p>
+      </div>
+    </section>
+    <!-- Page 2: Collage -->
+    <section id="collage" class="page">
+      <div class="collage-title">My Heart’s Collage</div>
+      <div class="collage-note">When I miss you, I close my eyes and see our moments together. Every picture, a stitch in the quilt of my heart.</div>
+      <div class="collage-container" id="collage-container">
+        <div class="collage-heart-anim">❤️‍🩹</div>
+      </div>
+    </section>
+    <!-- Page 3: Scrapbook -->
+    <section id="scrapbook" class="page">
+      <div class="scrapbook-title">Scrapbook of Missing You</div>
+      <div class="scrapbook-note">Swipe through the pages. Tap a photo for a message from my heart.</div>
+      <div class="scrapbook-pages" id="scrapbook-pages"></div>
+      <div class="scrapbook-grid" id="scrapbook-grid"></div>
+    </section>
+    <!-- Page 4: Showcase -->
+    <section id="showcase" class="page">
+      <div class="showcase-hearts-bg" id="showcase-hearts-bg"></div>
+      <div class="showcase-title">Forever in My Heart</div>
+      <div class="showcase-caption">Love travels through memories, and every picture is a heartbeat echoing my feelings for you.<br>These moments, wrapped in warmth and longing, are my forever treasures. ❤️‍🩹</div>
+      <div class="showcase-gallery" id="showcase-gallery"></div>
+    </section>
+    <!-- Page 5: Letter -->
+    <section id="letter" class="page">
+      <div class="collage-title">Letter From My Heart</div>
+      <div style="max-width: 700px; margin:0 auto; background:rgba(255,255,255,0.86);border-radius:22px;box-shadow:0 3px 22px #b39ddb33;margin-top:2em; border:2.5px solid #ffd6e0;">
+        <p class="typewriter" id="typed-letter"></p>
+      </div>
+    </section>
+    <div class="page-switcher">
+      <button class="switch-btn" id="next-btn">Collage &rarr;</button>
+    </div>
+  </div>
+  <!-- Scrapbook popup -->
+  <div class="popup-bg" id="popup-bg">
+    <div class="popup-content">
+      <button class="popup-close" id="popup-close" title="Close Popup">&times;</button>
+      <div class="popup-stars" id="popup-stars"></div>
+      <img id="popup-img" class="popup-img" src="" alt="Popup Image">
+      <div class="popup-message" id="popup-message"></div>
+    </div>
+  </div>
+  <script>
+  const SHOWCASE_IMAGES = [
+    {src: "https://i.ibb.co/WvTJngyF/IMG-3728.jpg", note: "If I could hold you now, I’d never let you go. Missing you deeply."},
+    {src: "https://i.ibb.co/KpsGm4vX/IMG-3719.jpg", note: "Your smile lives in my heart, lighting up my loneliest days."},
+    {src: "https://i.ibb.co/CKhgtwML/IMG-3722.jpg", note: "Every sunset reminds me of your warmth and the way you hug my soul."},
+    {src: "https://i.ibb.co/Hf82JCpg/IMG-4089.jpg", note: "The world is more beautiful in memories with you."},
+    {src: "https://i.ibb.co/HD2bK0Vv/IMG-2265.jpg", note: "I find you in every soft breeze and every gentle thought."},
+    {src: "https://i.ibb.co/DPwKfwVL/IMG-2258.jpg", note: "Your love is my favorite song, playing softly in my soul."}
+  ];
+  const COLLAGE_IMAGES = [
+    "https://i.ibb.co/1G5FWLMK/IMG-2256.jpg","https://i.ibb.co/Vc8m0bYz/IMG-2251.jpg","https://i.ibb.co/vCZQ92Wg/IMG-4083.jpg",
+    "https://i.ibb.co/MFbcpns/IMG-2252.jpg","https://i.ibb.co/DPwKfwVL/IMG-2258.jpg","https://i.ibb.co/Hpxcw67v/IMG-4085.jpg",
+    "https://i.ibb.co/dsQ1dY9P/IMG-4088.jpg","https://i.ibb.co/Hf82JCpg/IMG-4089.jpg","https://i.ibb.co/bySjLVz/939b3a43-cfeb-4486-a9b0-dc0daca955eb.jpg"
+  ];
+  const SCRAPBOOK_IMAGES = [
+    "https://i.ibb.co/0j5t9PX7/98ba4001-e267-49c5-83e9-69a4979e1ed1.jpg","https://i.ibb.co/qYDTCrRw/IMG-8586.jpg","https://i.ibb.co/84BZV7Yx/3-FAA830-C-C295-4319-BEAA-A0-FEB5-BF62-AC.jpg","https://i.ibb.co/0j2DPCmH/IMG-8587.jpg","https://i.ibb.co/G47Wzv8j/IMG-8588.jpg","https://i.ibb.co/wZvmRC2C/IMG-8843.jpg","https://i.ibb.co/jvbkPVcB/IMG-2264.jpg","https://i.ibb.co/Q367r5tW/IMG-2255.jpg","https://i.ibb.co/4nTPpmZQ/IMG-2254.jpg","https://i.ibb.co/jvrMb9FH/IMG-2263.jpg","https://i.ibb.co/VWfMhxCS/IMG-2259.jpg","https://i.ibb.co/HD2bK0Vv/IMG-2265.jpg","https://i.ibb.co/5WRx6YDq/IMG-2266.jpg","https://i.ibb.co/tp6zJsDj/IMG-3682.jpg","https://i.ibb.co/7Jcmj22X/IMG-3716.jpg","https://i.ibb.co/fGX91P8H/IMG-3713.jpg","https://i.ibb.co/Fb83nb9Q/IMG-3718.jpg","https://i.ibb.co/r2BNN3pd/IMG-1599.jpg","https://i.ibb.co/npc9JH6/IMG-3721.jpg","https://i.ibb.co/355SRZ0Z/74022-DD7-8-A77-499-B-AD48-B434418-A07-DF.png","https://i.ibb.co/CKhgtwML/IMG-3722.jpg","https://i.ibb.co/KpsGm4vX/IMG-3719.jpg","https://i.ibb.co/WvTJngyF/IMG-3728.jpg"
+  ];
+  const SCRAPBOOK_NOTES = [
+    "Your smile is my sunshine on the darkest days.",
+    "I miss you more than words can say.",
+    "Every memory with you is a treasure in my heart.",
+    "Your laughter echoes in my dreams.",
+    "Missing you is my heart’s silent song.",
+    "I wish I could hold you right now.",
+    "Sometimes I hug my pillow and pretend it’s you.",
+    "My heart is always whispering your name.",
+    "Every picture, a thousand memories.",
+    "You are the home my heart found.",
+    "You’re the wish I make on every star.",
+    "If missing you was an art, my heart is the masterpiece.",
+    "You are the dream I never want to wake up from.",
+    "You’re the reason my heart skips a beat.",
+    "Counting the days until I see you again.",
+    "You are my favorite thought.",
+    "My soul smiles when I think of you.",
+    "You are the calm in my storm.",
+    "You are the poetry my heart keeps writing.",
+    "My heart aches for your presence.",
+    "You are always on my mind.",
+    "You are the reason for my happiest days.",
+    "Your absence is felt in every heartbeat.",
+    "Love you beyond words and distance."
+  ];
+  const PAGE_NAMES = [
+    "Collage", "Scrapbook", "Romantic Gallery", "Letter", ""
+  ];
+  const PAGES = ["home","collage","scrapbook","showcase","letter"];
+  let currentPage = 0;
+  function showPage(idx) {
+    document.querySelectorAll('.page').forEach((el,i) =>
+      el.classList.toggle('active', i === idx)
+    );
+    let nextBtn = document.getElementById('next-btn');
+    if(idx < PAGES.length-1) {
+      nextBtn.innerHTML = PAGE_NAMES[idx] + " &rarr;";
+      nextBtn.disabled = false;
+      nextBtn.style.visibility = "visible";
+    } else {
+      nextBtn.style.visibility = "hidden";
+    }
+    if(PAGES[idx]==="letter") setTimeout(runTypewriter, 400);
+    if(PAGES[idx]==="collage") setTimeout(renderCollage, 200);
+    if(PAGES[idx]==="scrapbook") setTimeout(()=>renderScrapbookPage(0),200);
+    if(PAGES[idx]==="showcase") setTimeout(renderShowcase,200);
+  }
+  document.getElementById('next-btn').addEventListener('click', ()=>{
+    if(currentPage<PAGES.length-1) showPage(++currentPage);
+  });
+  showPage(currentPage);
+
+  // Collage with extra effects
+  function renderCollage() {
+    const collage = document.getElementById('collage-container');
+    collage.innerHTML = '<div class="collage-heart-anim">❤️‍🩹</div>';
+    COLLAGE_IMAGES.forEach((url,i)=>{
+      let img = document.createElement('img');
+      img.src = url;
+      img.alt = "Collage";
+      img.className = "collage-img";
+      img.onerror = function(){ img.style.display="none"; };
+      collage.appendChild(img);
+    });
+    // Sparkles
+    for(let i=0;i<7;i++) {
+      let s = document.createElement('div');
+      s.innerHTML = "✨";
+      s.className = "collage-sparkle";
+      s.style.left = (10+Math.random()*80) + "%";
+      s.style.top = (10+Math.random()*80) + "%";
+      s.style.fontSize = (21+Math.random()*18)+"px";
+      s.style.opacity = 0.18+Math.random()*0.12;
+      collage.appendChild(s);
+    }
+    // Petals
+    function createPetal() {
+      let p = document.createElement('div');
+      p.className = 'petal';
+      let size = 10+Math.random()*18;
+      p.style.width = `${size}px`;
+      p.style.height = `${size*1.2}px`;
+      p.style.position = 'absolute';
+      p.style.left = `${Math.random()*95}%`;
+      p.style.top = '-32px';
+      p.style.background = "linear-gradient(135deg,#ffb7c5 60%,#fff0 100%)";
+      p.style.borderRadius = "60% 40% 50% 50%/40% 60% 50% 50%";
+      p.style.opacity = 0.7+Math.random()*0.2;
+      p.style.pointerEvents = "none";
+      p.style.animation = `petal-fall-collage ${3+Math.random()*5}s linear`;
+      collage.appendChild(p);
+      setTimeout(()=>{if(p.parentNode)p.parentNode.removeChild(p);},6000);
+    }
+    setInterval(()=>{if(document.getElementById('collage').classList.contains('active')) createPetal();}, 800);
+    // Petal anim CSS
+    let styleSheet=document.createElement("style");
+    styleSheet.innerHTML=`
+    @keyframes petal-fall-collage{
+      0%{transform:translateY(0) rotate(0);}
+      100%{transform:translateY(350px) rotate(90deg);}
+    }`;
+    document.head.appendChild(styleSheet);
+  }
+  // Scrapbook page system
+  const scrapbookImgsPerPage = 8;
+  function renderScrapbookPage(pageNum) {
+    const grid = document.getElementById('scrapbook-grid');
+    const pagesBar = document.getElementById('scrapbook-pages');
+    grid.innerHTML = '';
+    pagesBar.innerHTML = '';
+    let totalPages = Math.ceil(SCRAPBOOK_IMAGES.length/scrapbookImgsPerPage);
+    for(let i=0;i<totalPages;i++) {
+      let btn = document.createElement('button');
+      btn.className = 'scrapbook-page-btn'+(i===pageNum?' active':'');
+      btn.textContent = "Page "+(i+1);
+      btn.onclick = ()=>renderScrapbookPage(i);
+      pagesBar.appendChild(btn);
+    }
+    for(let i=pageNum*scrapbookImgsPerPage; i<(pageNum+1)*scrapbookImgsPerPage && i<SCRAPBOOK_IMAGES.length; i++) {
+      let frame = document.createElement('div');
+      frame.className = "scrapbook-img-frame";
+      let img = document.createElement('img');
+      img.src = SCRAPBOOK_IMAGES[i];
+      img.alt = "Scrapbook";
+      let cap = document.createElement('div');
+      cap.className = "scrapbook-caption";
+      cap.innerText = "Tap for note";
+      frame.appendChild(img);
+      frame.appendChild(cap);
+      frame.onclick = ()=>showScrapbookPopup(SCRAPBOOK_IMAGES[i], SCRAPBOOK_NOTES[i%SCRAPBOOK_NOTES.length]);
+      grid.appendChild(frame);
+    }
+  }
+  function showScrapbookPopup(imgUrl, message) {
+    const popupBg = document.getElementById('popup-bg');
+    const popupImg = document.getElementById('popup-img');
+    const popupMsg = document.getElementById('popup-message');
+    popupImg.src = imgUrl;
+    popupMsg.innerHTML = message;
+    popupBg.classList.add('active');
+    popupStars();
+    popupHearts();
+  }
+  function popupStars() {
+    const stars = document.getElementById('popup-stars');
+    stars.innerHTML = '';
+    for(let i=0;i<35;i++){
+      let s = document.createElement('span');
+      s.innerHTML = "✨";
+      s.style.position = 'absolute';
+      s.style.left = (Math.random()*98)+'%';
+      s.style.top = (Math.random()*98)+'%';
+      s.style.fontSize = (16+Math.random()*18)+'px';
+      s.style.opacity = 0.18+Math.random()*0.18;
+      s.style.animation = `starBlink${i%2} ${(1.2+Math.random())}s infinite alternate`;
+      stars.appendChild(s);
+    }
+  }
+  function popupHearts(){
+    let old = document.getElementById('popup-heart-shower');
+    if(old && old.parentNode) old.parentNode.removeChild(old);
+    let shower = document.createElement('div');
+    shower.id = "popup-heart-shower";
+    shower.style.position = "fixed";
+    shower.style.top = "0";
+    shower.style.left = "0";
+    shower.style.width = "100vw";
+    shower.style.height = "100vh";
+    shower.style.pointerEvents = "none";
+    shower.style.zIndex = "1013";
+    document.body.appendChild(shower);
+    let running = true;
+    function dropHeart() {
+      if(!running) return;
+      let heart = document.createElement('div');
+      heart.style.position = "absolute";
+      heart.style.left = `${Math.random()*98}vw`;
+      heart.style.top = `-40px`;
+      heart.style.fontSize = `${24+Math.random()*30}px`;
+      heart.style.opacity = 0.6+Math.random()*0.3;
+      heart.innerHTML = ["❤️‍🩹","💖","💕","❤️‍🔥"][Math.floor(Math.random()*4)];
+      let dur = 2.5+Math.random()*2.5;
+      heart.style.transition = `top ${dur}s linear, opacity ${dur}s`;
+      shower.appendChild(heart);
+      setTimeout(()=>{heart.style.top = `96vh`;heart.style.opacity = 0.1;},50);
+      setTimeout(()=>{if(heart.parentNode)shower.removeChild(heart);},dur*1000+500);
+      if(running) setTimeout(dropHeart, 180+Math.random()*120);
+    }
+    dropHeart();
+    shower.ondestroy = ()=>{ running=false; };
+    document.getElementById('popup-close').onclick = function() {
+      document.getElementById('popup-bg').classList.remove('active');
+      shower.ondestroy();
+      if(shower.parentNode) shower.parentNode.removeChild(shower);
+    };
+    document.getElementById('popup-bg').onclick = function(e) {
+      if(e.target === this) {
+        this.classList.remove('active');
+        shower.ondestroy();
+        if(shower.parentNode) shower.parentNode.removeChild(shower);
+      }
+    };
+  }
+  for(let i=0;i<2;i++){
+    let starStyle=document.createElement("style");
+    starStyle.innerHTML=`
+    @keyframes starBlink${i} {
+      0%{opacity:0.2;}
+      100%{opacity:0.4;}
+    }`;
+    document.head.appendChild(starStyle);
+  }
+  // Showcase Romantic Emotional Gallery
+  function renderShowcase() {
+    const gallery = document.getElementById('showcase-gallery');
+    gallery.innerHTML = "";
+    SHOWCASE_IMAGES.forEach((data, i) => {
+      let frame = document.createElement('div');
+      frame.className = 'showcase-frame';
+      let heart = document.createElement('span');
+      heart.className = 'showcase-heart';
+      heart.innerHTML = ["❤️‍🔥","💖","💕","❤️‍🩹"][i%4];
+      frame.appendChild(heart);
+      let img = document.createElement('img');
+      img.className = 'showcase-img';
+      img.src = data.src;
+      img.alt = "Romantic memory";
+      img.onerror = function(){ img.style.background="#ffe6f6"; img.src=""; };
+      frame.appendChild(img);
+      let note = document.createElement('div');
+      note.className = 'showcase-note';
+      note.textContent = data.note;
+      frame.appendChild(note);
+      gallery.appendChild(frame);
+    });
+    romanticFallingHearts();
+    // sparkles
+    for(let i=0; i<7; i++) {
+      let s = document.createElement('div');
+      s.innerHTML = "✨";
+      s.className = "collage-sparkle";
+      s.style.left = (10+Math.random()*80) + "%";
+      s.style.top = (10+Math.random()*80) + "%";
+      s.style.fontSize = (21+Math.random()*18)+"px";
+      s.style.opacity = 0.18+Math.random()*0.12;
+      gallery.appendChild(s);
+    }
+  }
+  function romanticFallingHearts() {
+    const bg = document.getElementById('showcase-hearts-bg');
+    bg.innerHTML = "";
+    function dropHeart() {
+      let heart = document.createElement('span');
+      heart.className = 'showcase-falling-heart';
+      heart.innerHTML = ["💖","❤️‍🩹","❤️‍🔥","💕"][Math.floor(Math.random()*4)];
+      heart.style.left = `${Math.random()*95}vw`;
+      heart.style.top = '-50px';
+      let duration = 3+Math.random()*1.8;
+      heart.style.animationDuration = duration+'s';
+      heart.style.fontSize = `${32+Math.random()*18}px`;
+      bg.appendChild(heart);
+      setTimeout(()=>{if(heart.parentNode) heart.parentNode.removeChild(heart);}, duration*1000+200);
+    }
+    setInterval(dropHeart, 260);
+  }
+  // Letter typewriter
+  const letterText = `
+Yaar ly kasa tri vattay ly athvun yete re tujhi brr pn nhi vatte tula sangycha v4krto but tujhi condition bghun asa vatta kasa explain kru me swatala baba la bollo me but baba bolle 2divas ajun kaam aahe so sry yaar i love you so much 🫂🫂🫂🫂 
+idk tu he read krshil ka nhi but i would like jr tu kelas he read tr
+
+Sometimes I feel like my heart is missing a beat without you. You are always in my dreams, always in my prayers. Missing you is my heart's gentle ache, a beautiful pain that reminds me how deep my love is for you. ❤️‍🩹
+  `;
+  function runTypewriter() {
+    const tw = document.getElementById('typed-letter');
+    if(!tw) return;
+    tw.innerHTML = "";
+    let i = 0;
+    function type() {
+      if (i <= letterText.length) {
+        tw.innerHTML = letterText.substring(0, i)
+          .replace(/\n/g, "<br>");
+        i++;
+        let char = letterText.charAt(i-1);
+        let delay = 26 + Math.random() * 30;
+        if (char === "." || char === ",") delay += 70;
+        setTimeout(type, delay);
+      }
+    }
+    type();
+  }
+
+  // Music: autoplay, no controls
+  const music = document.getElementById('bg-music');
+  music.volume = 0.85;
+  document.addEventListener('DOMContentLoaded', ()=>{
+    music.play().catch(()=>{});
+    document.body.addEventListener('click', function once(){
+      music.play().catch(()=>{});
+      document.body.removeEventListener('click', once);
+    });
+  });
+  </script>
+</body>
+</html>
